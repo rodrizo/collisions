@@ -7,6 +7,8 @@ using namespace std;
 
 // string *report = new string[10]; // stores the collisions
 
+void listarTabla();
+
 struct hash
 {
     int codigo;
@@ -54,11 +56,36 @@ void insercion(int codigo, char nombre[20])
     }
 }
 
-void listartabla()
+void deleting()
+{
+
+    int option, index;
+
+    do
+    {
+        cout << "-----------------------------------------------------------\n";
+        cout << "¿Quiere eliminar un elemento de la tabla?\n1- Si\n2- No\n";
+        cin >> option;
+        if (option == 1)
+        {
+            cout << "-----------------------------------------------------------\n";
+            cout << "\n\nIngrese el indice del elemento que desea borrar -> ";
+            cin >> index;
+
+            //deleting
+            tabla[index].codigo = 0;
+            memset(tabla[index].nombre, ' ', 10);
+            listarTabla();
+        }
+
+    } while (option != 2);
+}
+
+void listarTabla()
 {
     for (int i = 0; i < 10; i++)
     {
-        printf("[%d] : %d -> %s\n", i, tabla[i].codigo, tabla[i].nombre);
+        printf("\t\t\t\t[%d] : %d -> %s\n", i, tabla[i].codigo, tabla[i].nombre);
     }
 }
 
@@ -78,7 +105,8 @@ int main()
     insercion(7, "hola");
     insercion(77, "aloh");
     insercion(65, "trece");
-    listartabla();
+    listarTabla();
+    deleting();
 
     return (0);
 }
